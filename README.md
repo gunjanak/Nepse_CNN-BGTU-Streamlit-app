@@ -5,5 +5,5 @@ A streamlit web app, that scraps the data of stock price listed in NEPSE. And pr
 
 
 
-[link to my post on this] (https://janak-lal.com.np/stock-price-prediction-with-cnn-bgru-model/)
+[link to my post on this](https://janak-lal.com.np/stock-price-prediction-with-cnn-bgru-model/)
 
