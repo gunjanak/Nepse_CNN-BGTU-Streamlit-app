@@ -54,8 +54,8 @@ def model_prediction(data,model,company_df,Look_back_period,future):
       predict_input[:,i] = numpy_array[i]
 
     predict_scaled = (predict_input-mean)/(std)
-    print("Shape of predict scaled")
-    print(predict_scaled.shape)
+    #print("Shape of predict scaled")
+    #print(predict_scaled.shape)
     #load model
 
     prediction = model.predict(predict_scaled)
@@ -69,7 +69,7 @@ def model_prediction(data,model,company_df,Look_back_period,future):
     record = record.append(series_predict, ignore_index=True)
     #converting to datatime format
     record['Date'] =  pd.to_datetime(record['Date'], infer_datetime_format=True)
-    print(type(record['Date'][0]))
+    #print(type(record['Date'][0]))
   
   return record
 

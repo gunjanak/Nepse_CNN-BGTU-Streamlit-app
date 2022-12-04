@@ -84,11 +84,12 @@ def main():
         #Press this button to train the model
         #Along with training, we also compare the predicted and actual price
         #save the model
+        model_name = 'model_cnn_bgru_'+company_name+"_"+str(future)+".h5"
         if st.button('Train and save Model'):
             st.write('Training')
             model_CNN_BGRU = Model_CNN_BGRU(X,Y,lookbackperiod)
             st.write('Saving')
-            model_name = 'model_cnn_bgru_'+company_name+"_"+str(future)+".h5"
+            
             model_CNN_BGRU.save(model_name)
             st.write('Predicting ')
             record = model_prediction(data,model_CNN_BGRU,company_df,lookbackperiod,future)
@@ -101,25 +102,13 @@ def main():
             st.write(error)
             
 
-        
-
-
-   
-    if(len(company_df) != 0):
-        #upload the model
-        uploaded_file = st.file_uploader("Choose a trained model")
-        if(uploaded_file is None):
-            pass
-        else:
-            
-            st.write(uploaded_file.name)
-            model = load_model(uploaded_file.name)
-
-            #When this button is pressed our model will finally predict the stock price in required future
-            if st.button("Predict for future"):
-                prediction = final_prediction(company_df,lookbackperiod,data,model)
-                prediction = "This model predicts that the stock price of " + company_name + " after "+str(future)+" days "+"is "+str(prediction[0][0])
-                st.write(prediction)
+        #When this button is pressed our model will finally predict the stock price in required future
+        if st.button("Predict for future"):
+            #model_name = 'model_cnn_bgru_'+company_name+"_"+str(future)+".h5"
+            model = load_model(model_name)
+            prediction = final_prediction(company_df,lookbackperiod,data,model)
+            prediction = "This model predicts that the stock price of " + company_name + " after "+str(future+1)+" days "+"is "+str(prediction[0][0])
+            st.write(prediction)
 
 
 
